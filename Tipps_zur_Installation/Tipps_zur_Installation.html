@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+</head>
+<body>
+<h1 id="tipps-zur-installation-der-entwicklungsumgebung-zur-vorlesung">Tipps zur Installation der Entwicklungsumgebung zur Vorlesung</h1>
+<p>Prof. Dr. Thomas Köller – Hochschule Karlsruhe</p>
+<p>Im Rahmen der Vorlesung werden Simulationsaufgaben mit Python oder einer Kombination aus Python und OpenModelica gelöst. Vermutlich möchten viele von Ihnen die in der Vorlesung benutzte Software auf ihrem eigenen Laptop installieren. Nachfolgend finden Sie eine ausführliche Installationsanleitung. Zu dieser Anleitung gibt es ebenfalls Videos.</p>
+<p>Falls Sie bei der Installation Probleme haben, empfehle ich Ihnen die Installation auf einem Linux Mint 21.3 (<a href="https://www.linuxmint.com/edition.php?id=311" class="uri">https://www.linuxmint.com/edition.php?id=311</a>) System in einer virtuellen Maschine.</p>
+<h2 id="installation-von-openmodelica">Installation von OpenModelica</h2>
+<h3 id="linux">Linux</h3>
+<p>Installieren Sie OpenModelica 1.22.4 auf einem Linux Mint 21.3 wie folgt:</p>
+<p>Öffnen Sie ein Terminalfenster und geben Sie nacheinander folgende Befehle ein (teilweise müssen Sie mit ‘j’=ja bestätigen):</p>
+<ul>
+<li><code>sudo apt-get update</code></li>
+<li><code>sudo apt-get install ca-certificates curl gnupg</code></li>
+<li><p><code>sudo curl -fsSL http://build.openmodelica.org/apt/openmodelica.asc | sudo gpg --dearmor -o /usr/share/keyrings/openmodelica-keyring.gpg</code></p></li>
+<li><p><code>echo "deb [arch=amd64 signed-by=/usr/share/keyrings/openmodelica-keyring.gpg]  https://build.openmodelica.org/omc/builds/linux/releases/1.22.4/ jammy release" | sudo tee /etc/apt/sources.list.d/openmodelica.list</code></p></li>
+<li><code>sudo apt-get update</code></li>
+<li><p><code>sudo apt install openmodelica</code></p></li>
+</ul>
+<p>Optional kann man jetzt die Paketquelle wieder auskommentieren:</p>
+<ul>
+<li><code>echo "# deb https://build.openmodelica.org/omc/builds/linux/releases/1.22.4/ jammy release" | sudo tee /etc/apt/sources.list.d/openmodelica.list</code></li>
+<li><code>sudo apt-get update</code></li>
+</ul>
+<p>Auf diese Weise verhindert man, dass die Paketverwaltung automatisch neuere Versionen von OpenModelica, die ggf. mit den Vorlesungsinhalten nicht inkompatibel sind, installiert.</p>
+<p>Nach der Installation von OpenModelica muss noch die Standardbibliothek installiert werden.</p>
+<ul>
+<li><code>Entwicklung-&gt;OMEdit</code></li>
+<li><code>Datei-&gt;Manage Libraries-&gt;Install Library: Name: Modelica Version: 4.0.0</code></li>
+<li><code>OMEdit schließen und wieder öffnen</code></li>
+</ul>
+<h3 id="windows">Windows</h3>
+<p>Installieren Sie die Release 1.22.3 unter <a href="https://build.openmodelica.org/omc/builds/windows/releases/1.22/3/64bit/OpenModelica-v1.22.3-64bit.exe" class="uri">https://build.openmodelica.org/omc/builds/windows/releases/1.22/3/64bit/OpenModelica-v1.22.3-64bit.exe</a></p>
+<h2 id="installation-python-3--anaconda">Installation Python 3 / Anaconda</h2>
+<h3 id="linux-1">Linux</h3>
+<ul>
+<li>Laden Sie die Datei <a href="https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh" class="uri">https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh</a> herunter und machen Sie die Datei ausführbar.</li>
+<li>Öffnen Sie ein Terminalfenster im Downloadverzeichnis und geben Sie ein: <code>bash ./Anaconda3-2024.02-1-Linux-x86_64.sh</code></li>
+</ul>
+<h3 id="windows-1">Windows</h3>
+<ul>
+<li>Installieren Sie die Datei <a href="https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Windows-x86_64.exe" class="uri">https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Windows-x86_64.exe</a>.</li>
+</ul>
+<h2 id="installation-des-environments-zur-vorlesung">Installation des Environments zur Vorlesung</h2>
+<h3 id="linux-2">Linux</h3>
+<p>Zunächst muss <code>conda</code> initialsiert werden. Öffnen Sie ein Terminalfenster und geben Sie nacheinanmder die Befehle ein. Schließen Sie danach das Terminalfenster wieder.</p>
+<ul>
+<li><code>cd ~/anaconda3/bin</code></li>
+<li><code>./conda init bash</code></li>
+</ul>
+<p>Öffnen Sie ein neues Terminalfenster in dem sich die Datei <code>OMPython-master.zip</code> (Im Verzeichnis “Tipps zur Installation”) befindet und geben Sie nacheinander folgende Befehle ein (teilweise müssen Sie mit ‘y’=yes bestätigen):</p>
+<ul>
+<li><code>conda update conda</code></li>
+<li><code>conda update conda-build</code></li>
+<li><code>conda create --name modsim</code></li>
+<li><code>conda activate modsim</code></li>
+<li><code>conda install -y -c anaconda spyder</code></li>
+<li><code>conda install -y -c anaconda matplotlib</code></li>
+<li><code>conda install -y -c anaconda scipy</code></li>
+<li><code>conda install -y -c conda-forge control</code></li>
+<li><code>python -m pip install -U OMPython-master.zip</code></li>
+</ul>
+<p>Schreiben Sie sich ein kleines <code>bash</code>-Skript (z.B. mit dem Namen <code>modsimstart.sh</code>) und legen Sie dieses auf den Schreibtisch:</p>
+<pre><code>#!/bin/bash
+source ~/anaconda3/bin/activate modsim
+spyder</code></pre>
+<h3 id="windows-2">Windows</h3>
+<p>Öffnen Sie einen Anaconda Prompt und geben Sie nacheinander folgende Befehle ein (teilweise müssen Sie mit ‘y’=yes bestätigen):</p>
+<ul>
+<li><code>conda update conda</code></li>
+<li><code>conda update conda-build</code></li>
+<li><code>conda create --name modsim</code></li>
+<li><code>conda activate modsim</code></li>
+<li><code>conda install -y -c anaconda spyder</code></li>
+<li><code>conda install -y -c anaconda matplotlib</code></li>
+<li><code>conda install -y -c anaconda scipy</code></li>
+<li><code>conda install -y -c conda-forge control</code></li>
+</ul>
+<p>Suchen Sie im Explorer das Installationsverzeichnis von OpenModelica (nachfolgend %OPENMODELICAHOME% genannt) und tippen Sie:</p>
+<ul>
+<li><code>cd %OPENMODELICAHOME%\share\omc\scripts\PythonInterface</code></li>
+<li><code>python -m pip install -U .</code></li>
+</ul>
+<p>(Punkt mit Leerzeichen am Ende nicht vergessen, siehe auch: <a href="https://github.com/OpenModelica/OMPython" class="uri">https://github.com/OpenModelica/OMPython</a> )</p>
+<p>Im Startmenü gibt es jetzt einen Spyder-Button mit dem Namen modsim.</p>
+<h2 id="test-der-installation">Test der Installation</h2>
+<p>Testen Sie Ihre Installation anhand der Dateien: <code>pt1_step.mo</code> und <code>pt1_step.py</code> (siehe Vorlesung).</p>
+</body>
+</html>
