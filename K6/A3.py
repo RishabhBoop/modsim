@@ -4,8 +4,15 @@ import matplotlib.pyplot as plt
 import os
 
 modelname='A3'
-mod=ModelicaSystem(os.getcwd()+'/'+modelname+'.mo',modelname,
-    [os.getcwd().replace('\\','/')+'/ModSimBib/package.mo'])
+# von Köller, nicht auf mein System anwendbar
+# mod=ModelicaSystem(os.getcwd()+'/'+modelname+'.mo',modelname, [os.getcwd().replace('\\','/')+'/ModSimBib/package.mo'])
+
+# Angepasste Version:
+current_path = os.path.realpath(__file__).strip(__file__.split('/')[-1])
+package_path =  current_path + 'ModSimBib/package.mo'
+model_path = current_path + 'A3.mo'
+mod = ModelicaSystem(model_path, modelname, [package_path])
+
 mod.setSimulationOptions('stopTime=0.015')
 mod.simulate()
 [t]=mod.getSolutions('time')
@@ -21,3 +28,5 @@ ax.set_xlabel('t/s')
 ax.set_ylabel('u/v bzw. 10*i/A')
 ax.set_xticks(np.arange(0, 0.015+0.005, 0.005))
 fig.tight_layout()
+
+plt.show()
