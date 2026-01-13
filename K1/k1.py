@@ -6,7 +6,15 @@
 import numpy as np
 import scipy
 import matplotlib.pyplot as plt
+
 # ------------------------------------------------
+
+# Check if EXPORT_PLOT is defined, otherwise default to False
+try:
+    EXPORT_PLOT
+except NameError:
+    EXPORT_PLOT = False
+
 
 def aufgabe1():
     print("---------- Aufgabe 1 ----------")
@@ -48,7 +56,6 @@ def aufgabe1():
     except NameError:
         print("Variable 'c' ist nicht definiert")
 
-
     # variablen aus der datei wieder einlesen
     data = np.load("K1/test.npz")
     print(data)
@@ -65,7 +72,9 @@ def aufgabe1():
 
     return
 
+
 # ------------------------------------------------
+
 
 def aufgabe2():
     print("---------- Aufgabe 2 ----------")
@@ -76,9 +85,25 @@ def aufgabe2():
     print("Summe aller Elemente:", np.sum(magic))
     print("Maximum aller Elemente:", np.max(magic))
     p_max = np.unravel_index(np.argmax(magic), magic.shape)
-    print("Position des Maximums aller Elemente:", np.argmax(magic), "bei Position [", p_max[0], ",", p_max[1], "]")
+    print(
+        "Position des Maximums aller Elemente:",
+        np.argmax(magic),
+        "bei Position [",
+        p_max[0],
+        ",",
+        p_max[1],
+        "]",
+    )
     p_min = np.unravel_index(np.argmin(magic), magic.shape)
-    print("Position des Minimums aller Elemente:", np.argmin(magic), "bei Position [", p_min[0], ",", p_min[1], "]")
+    print(
+        "Position des Minimums aller Elemente:",
+        np.argmin(magic),
+        "bei Position [",
+        p_min[0],
+        ",",
+        p_min[1],
+        "]",
+    )
 
     v1 = magic[:, 2].reshape(magic.shape[0], 1)
     print(v1)
@@ -101,6 +126,7 @@ def aufgabe3():
     print("---------- Ende Aufgabe 3 ----------")
     return
 
+
 def aufgabe4():
     print("---------- Aufgabe 4 ----------")
     # load .mat file
@@ -121,15 +147,22 @@ def aufgabe4():
     y_new = interpol(x_new)
 
     # plot matfile content
-    plt.plot(xWerte, yWerte, color='blue')
-    plt.plot(x_new, y_new, color='black', linestyle='--')
+    plt.plot(xWerte, yWerte, color="blue")
+    plt.plot(x_new, y_new, color="black", linestyle="--")
+    plt.title("Kapitel 1 - Aufgabe 4")
     print("Showing plot...")
-    plt.show()
-    print("Plot closed.")
+    if EXPORT_PLOT:
+        plt.savefig('k1_a4.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k1_a4.png")
+    else:
+        plt.show()
+        print("Plot closed.")
     print("---------- Ende Aufgabe 4 ----------")
     return
 
-aufgabe1()
-aufgabe2()
-aufgabe3()
-aufgabe4()
+
+if __name__ == "__main__":
+    aufgabe1()
+    aufgabe2()
+    aufgabe3()
+    aufgabe4()

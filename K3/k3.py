@@ -9,6 +9,12 @@ from OMPython import ModelicaSystem
 import os
 import math
 
+# Check if EXPORT_PLOT is defined, otherwise default to False
+try:
+    EXPORT_PLOT
+except NameError:
+    EXPORT_PLOT = False
+
 u_dach = 2
 f = 1
 R = 20
@@ -83,8 +89,13 @@ def aufgabe1():
     ax.grid()
     ax.legend(loc="upper right", frameon=True)
 
+    fig.suptitle("Kapitel 3 - Aufgabe 1")
     plt.tight_layout()
-    plt.show()
+    if EXPORT_PLOT:
+        plt.savefig('k3_a1.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k3_a1.png")
+    else:
+        plt.show()
 
 
 def aufgabe2():
@@ -107,10 +118,14 @@ def aufgabe2():
     plt.plot(t, i_L, label="i_L (A)")
     plt.xlabel("Zeit (s)")
     plt.ylabel("Wert")
-    plt.title("RLC-Schaltkreis: Spannung und Strom (Modelica)")
+    plt.title("Kapitel 3 - Aufgabe 2: RLC-Schaltkreis: Spannung und Strom (Modelica)")
     plt.legend()
     plt.grid()
-    plt.show()
+    if EXPORT_PLOT:
+        plt.savefig('k3_a2.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k3_a2.png")
+    else:
+        plt.show()
 
 
 def aufgabe3():
@@ -147,8 +162,13 @@ def aufgabe3():
     ax2.grid(True)
     ax2.legend()
 
+    fig.suptitle("Kapitel 3 - Aufgabe 3")
     plt.tight_layout()
-    plt.show()
+    if EXPORT_PLOT:
+        plt.savefig('k3_a3.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k3_a3.png")
+    else:
+        plt.show()
 
 
 def aufgabe4():
@@ -178,7 +198,7 @@ def aufgabe5():
     axis[1].semilogx(w, phase)
 
     #plt.title("Bode Diagramm (Bandpass)")
-    axis[0].set_title('Bode Diagramm')
+    fig.suptitle('Kapitel 3 - Aufgabe 5: Bode Diagramm')
     axis[0].set_ylabel('Amplitude [dB]')
     axis[0].set_xlabel("Frequenz [rad/s]")
     axis[0].grid(True, which="both")
@@ -187,11 +207,16 @@ def aufgabe5():
     axis[1].set_ylabel('Phase [°]')
     axis[1].set_xlabel("Frequenz [rad/s]")
 
-    plt.show()
+    if EXPORT_PLOT:
+        plt.savefig('k3_a5.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k3_a5.png")
+    else:
+        plt.show()
 
 
-aufgabe1()
-aufgabe2()
-aufgabe3()
-aufgabe4()
-aufgabe5()
+if __name__ == "__main__":
+    aufgabe1()
+    aufgabe2()
+    aufgabe3()
+    aufgabe4()
+    aufgabe5()

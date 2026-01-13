@@ -1,6 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Check if EXPORT_PLOT is defined, otherwise default to False
+try:
+    EXPORT_PLOT
+except NameError:
+    EXPORT_PLOT = False
+
 def i_t(t, U=300, R=10, L=10e-3, i0=0, t_start=0):
     # Calculate I_inf (long term current)
     I_inf = U / R
@@ -83,7 +89,7 @@ def RL_circuit(duty, T_P, N, U_0, i_0, R, L, t_start=0):
 
 
 def plot_single_axis_10i(
-    t, i, t_u, u, title="Lösung", xlabel="t/s", ylabel="u/v bzw. 10*i/A", marker="o"
+    t, i, t_u, u, title="Lösung", xlabel="t/s", ylabel="u/v bzw. 10*i/A", marker="o", filename=None
 ):
     """
     Plot voltage and 10*current on same axis (standard format for Aufgaben 1-4).
@@ -97,6 +103,7 @@ def plot_single_axis_10i(
         xlabel: X-axis label
         ylabel: Y-axis label
         marker: Marker style for current plot ('s' for squares, '+' for plus)
+        filename: Filename to save plot (if EXPORT_PLOT is True)
     """
     fig, ax = plt.subplots(figsize=(10, 6))
 
@@ -108,11 +115,15 @@ def plot_single_axis_10i(
     ax.set_ylabel(ylabel)
 
     fig.tight_layout()
-    plt.show()
+    if EXPORT_PLOT and filename:
+        plt.savefig(filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print(f"Plot saved to {filename}")
+    else:
+        plt.show()
 
 
 def plot_dual_subplots_10i(
-    t1, i1, t_u1, u1, t2, i2, t_u2, u2, title="Lösung zu Aufgabe 3"
+    t1, i1, t_u1, u1, t2, i2, t_u2, u2, title="Lösung zu Aufgabe 3", filename=None
 ):
     """
     Plot two subplots with voltage and 10*current on same axis (for Aufgabe 3).
@@ -121,6 +132,7 @@ def plot_dual_subplots_10i(
         t1, i1, t_u1, u1: Data for first subplot
         t2, i2, t_u2, u2: Data for second subplot
         title: Main title
+        filename: Filename to save plot (if EXPORT_PLOT is True)
     """
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
 
@@ -140,10 +152,14 @@ def plot_dual_subplots_10i(
     ax2.set_ylabel("u/v bzw. 10*i/A")
 
     fig.tight_layout()
-    plt.show()
+    if EXPORT_PLOT and filename:
+        plt.savefig(filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print(f"Plot saved to {filename}")
+    else:
+        plt.show()
 
 
-def plot_dual_axis(t_i, i, t_u, u, title="Lösung", time_unit="s"):
+def plot_dual_axis(t_i, i, t_u, u, title="Lösung", time_unit="s", filename=None):
     """
     Plot with two separate y-axes (voltage on left, current on right).
 
@@ -154,6 +170,7 @@ def plot_dual_axis(t_i, i, t_u, u, title="Lösung", time_unit="s"):
         u: Voltage array
         title: Plot title
         time_unit: Time unit for x-axis label
+        filename: Filename to save plot (if EXPORT_PLOT is True)
     """
     fig, ax1 = plt.subplots(figsize=(10, 6))
 
@@ -172,10 +189,14 @@ def plot_dual_axis(t_i, i, t_u, u, title="Lösung", time_unit="s"):
 
     plt.title(title)
     fig.tight_layout()
-    plt.show()
+    if EXPORT_PLOT and filename:
+        plt.savefig(filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print(f"Plot saved to {filename}")
+    else:
+        plt.show()
 
 
-def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont):
+def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont, filename=None):
     """
     Plot PWM and continuous sinusoidal results for comparison (Aufgabe 5).
 
@@ -186,6 +207,7 @@ def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont):
         u_total: PWM voltage array
         t_cont: Time array for continuous signals
         i_cont: Continuous current array
+        filename: Filename to save plot (if EXPORT_PLOT is True)
     """
     fig, ax1 = plt.subplots(1, 1, figsize=(12, 6))
 
@@ -209,7 +231,7 @@ def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont):
     ax1.set_ylabel("Spannung u / V", color="g")
     ax1.tick_params(axis="y", labelcolor="g")
     ax1.grid(True)
-    ax1.set_title("Aufgabe 5: Vierquadrantensteller mit sinusförmiger Spannung")
+    ax1.set_title("Kapitel 4 - Aufgabe 5: Vierquadrantensteller mit sinusförmiger Spannung")
 
     # Plot Current on secondary y-axis
     ax2 = ax1.twinx()
@@ -230,7 +252,11 @@ def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont):
     ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper right")
 
     fig.tight_layout()
-    plt.show()
+    if EXPORT_PLOT and filename:
+        plt.savefig(filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print(f"Plot saved to {filename}")
+    else:
+        plt.show()
 
 
 ## ==================== SIMULATION FUNCTIONS ====================
@@ -256,7 +282,7 @@ def aufgabe1_2():
     u, t_u = u_t(u_0, duty, T_p)
 
     # Plot
-    plot_single_axis_10i(t, i, t_u, u, title="Lösung zu Aufgabe 1", marker="s")
+    plot_single_axis_10i(t, i, t_u, u, title="Kapitel 4 - Aufgabe 1-2", marker="s", filename="k4_a1_2.png")
 
 
 def aufgabe3():
@@ -288,7 +314,7 @@ def aufgabe3():
 
     # Plot
     plot_dual_subplots_10i(
-        t1, i1, t_u1, u1, t2, i2, t_u2, u2, title="Lösung zu Aufgabe 3"
+        t1, i1, t_u1, u1, t2, i2, t_u2, u2, title="Kapitel 4 - Aufgabe 3", filename="k4_a3.png"
     )
 
 
@@ -356,7 +382,7 @@ def aufgabe4():
 
     # Plot
     plot_single_axis_10i(
-        t_total, i_total, t_u_total, u_total, title="Lösung zu Aufgabe 4", marker="+"
+        t_total, i_total, t_u_total, u_total, title="Kapitel 4 - Aufgabe 4", marker="+", filename="k4_a4.png"
     )
 
 
@@ -475,7 +501,7 @@ def aufgabe5():
 
     # Plot the results
     plot_pwm_vs_continuous(
-        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result
+        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result, filename="k4_a5.png"
     )
 
 
@@ -558,12 +584,13 @@ def aufgabe6():
 
     # Plot the results
     plot_pwm_vs_continuous(
-        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result
+        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result, filename="k4_a6.png"
     )
 
 
-# aufgabe1_2()
-# aufgabe3()
-# aufgabe4()
-# aufgabe5()
-aufgabe6()
+if __name__ == "__main__":
+    # aufgabe1_2()
+    # aufgabe3()
+    # aufgabe4()
+    # aufgabe5()
+    aufgabe6()

@@ -5,6 +5,12 @@ from scipy.integrate import solve_ivp
 from OMPython import ModelicaSystem
 import os
 
+# Check if EXPORT_PLOT is defined, otherwise default to False
+try:
+    EXPORT_PLOT
+except NameError:
+    EXPORT_PLOT = False
+
 
 def x_dot_a1(t, x):
     """
@@ -159,7 +165,11 @@ def aufgabe1():
     # plt.xlabel("t")
     # plt.legend()
 
-    plt.show()
+    if EXPORT_PLOT:
+        plt.savefig('k5_a1.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k5_a1.png")
+    else:
+        plt.show()
 
 x_dot = x_dot_a2
 exact_x = exact_x_a2
@@ -184,8 +194,13 @@ def aufgabe2():
     )
     plt.xlabel("t")
     plt.ylabel("x")
+    plt.title("Kapitel 5 - Aufgabe 2")
     plt.legend()
-    plt.show()
+    if EXPORT_PLOT:
+        plt.savefig('k5_a2.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k5_a2.png")
+    else:
+        plt.show()
 
 
 def aufgabe3():
@@ -227,8 +242,13 @@ def aufgabe3():
     plt.loglog(h_vals, globerror_rk_x_at_2_vals, label="Runge-Kutta Global Error at x(2)")
     plt.xlabel("Step size h")
     plt.ylabel("Global Error at x(2)")
+    plt.title("Kapitel 5 - Aufgabe 3")
     plt.legend()
-    plt.show()
+    if EXPORT_PLOT:
+        plt.savefig('k5_a3.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k5_a3.png")
+    else:
+        plt.show()
 
 # --------- Selbsterarbeitung A4 ---------
 t_max = 3
@@ -302,9 +322,15 @@ def aufgabe4():
     ax.legend(loc="best")
     ax.set_xlabel("t")
     ax.grid()
-    plt.show()
+    fig.suptitle("Kapitel 5 - Aufgabe 4")
+    if EXPORT_PLOT:
+        plt.savefig('k5_a4.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k5_a4.png")
+    else:
+        plt.show()
 
-aufgabe1()
-aufgabe2()
-aufgabe3()
-aufgabe4()
+if __name__ == "__main__":
+    aufgabe1()
+    aufgabe2()
+    aufgabe3()
+    aufgabe4()

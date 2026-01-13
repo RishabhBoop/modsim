@@ -3,11 +3,19 @@ from OMPython import ModelicaSystem
 import matplotlib.pyplot as plt
 import os
 
+# Check if EXPORT_PLOT is defined, otherwise default to False
+try:
+    EXPORT_PLOT
+except NameError:
+    EXPORT_PLOT = False
+
 
 def aufgabe1(
     filename="A1.mo",
     modelname="ModSimBib.RLmitFreilauf",
     outputTitle="RL Circuit with Freewheeling Diode",
+    export_filename=None,
+    aufgabe_nummer="1",
 ):
     """
     This Aufgabe is implementing an ohm-inductor circuit simulation using our own Modellica Block.
@@ -33,7 +41,6 @@ def aufgabe1(
     ax1.plot(t, i_L, label="i_L (Inductor current)", color="red")
     ax1.plot(t, i_q, label="i_q (Source current)", color="black")
     ax1.set_ylabel("Ströme (A)")
-    ax1.set_title(outputTitle)
     ax1.legend()
     ax1.grid()
 
@@ -44,8 +51,13 @@ def aufgabe1(
     ax2.legend()
     ax2.grid()
 
+    fig.suptitle(f"Kapitel 6 - Aufgabe {aufgabe_nummer}: {outputTitle}")
     plt.tight_layout()
-    plt.show()
+    if EXPORT_PLOT and export_filename:
+        plt.savefig(export_filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print(f"Plot saved to {export_filename}")
+    else:
+        plt.show()
 
 
 def aufgabe2():
@@ -56,6 +68,8 @@ def aufgabe2():
         "A2.mo",
         "ModSimBib.RLmitFreilauf_ownModels",
         "RL-Schaltkreis mit Freilaufdiode (eigene Modelle)",
+        export_filename="k6_a2.png",
+        aufgabe_nummer="2",
     )
 
 
@@ -99,7 +113,7 @@ def aufgabe4():
     ax1.set_ylabel("Spannung u / V", color="g")
     ax1.tick_params(axis="y", labelcolor="g")
     ax1.grid(True)
-    ax1.set_title("Aufgabe 4: PWM Vierquadrantensteller")
+    ax1.set_title("Kapitel 6 - Aufgabe 4: PWM Vierquadrantensteller")
 
     # Plot Current on secondary y-axis
     ax2 = ax1.twinx()
@@ -113,9 +127,14 @@ def aufgabe4():
     ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper right")
 
     fig.tight_layout()
-    plt.show()
+    if EXPORT_PLOT:
+        plt.savefig('k6_a4.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        print("Plot saved to k6_a4.png")
+    else:
+        plt.show()
 
 
-aufgabe1()
-aufgabe2()
-aufgabe4()
+if __name__ == "__main__":
+    aufgabe1(export_filename="k6_a1.png")
+    aufgabe2()
+    aufgabe4()
