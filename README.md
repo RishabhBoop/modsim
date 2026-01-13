@@ -1,7 +1,8 @@
 # Modsim Labor (Numerische Mathematik)
 
 ## Installation
-
+Tnis is different from the useless 'Tipps_zur_Installation'. This is using pip and venv instead of conda.
+> Note: This guide has only been tested on Ubuntu 24.04 LTS (WSL2). It should work exactly the same on other Linux distributions. Windows users may need to adapt some commands.
 ### Virtual environment
 Create and activate a project virtual environment (Linux/macOS):
 ```sh
