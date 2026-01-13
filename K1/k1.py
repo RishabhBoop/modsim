@@ -129,14 +129,7 @@ def aufgabe4():
     print("---------- Ende Aufgabe 4 ----------")
     return
 
-aufgabe_choice = input("Welche Aufgabe möchten Sie ausführen? ")
-if aufgabe_choice == "1":
-    aufgabe1()
-elif aufgabe_choice == "2":
-    aufgabe2()
-elif aufgabe_choice == "3":
-    aufgabe3()
-elif aufgabe_choice == "4":
-    aufgabe4()
-else:
-    print("Ungültige Eingabe. Bitte gültige Zahl eingeben.")
+# aufgabe1()
+# aufgabe2()
+# aufgabe3()
+aufgabe4()
