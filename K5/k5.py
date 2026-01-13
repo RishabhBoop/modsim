@@ -304,9 +304,7 @@ def aufgabe4():
     ax.grid()
     plt.show()
 
-def main():
-    aufgabe4()
-
-
-if __name__ == "__main__":
-    main()
+aufgabe1()
+aufgabe2()
+aufgabe3()
+aufgabe4()

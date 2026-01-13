@@ -150,15 +150,13 @@ def aufgabe3():
 
 
 def aufgabe4():
-    pass
-
-    # # Zusatzfrage Antwort:
-    # print("\nAntwort zur Zusatzfrage:")
-    # print("Bei der Berechnung des Trägheitsmomentes J = J_Steiner + J_Eigen")
-    # print("wird das Eighenträgheitsmoment der Kugel (2/5 * m * r^2) vernachlässigt,")
-    # print(
-    #     "da der Radius der Kugel (0.05m) im Vergleich zur Pendellänge (1m) klein ist."
-    # )
+    # Zusatzfrage Antwort:
+    print(
+        "\nAntwort zur Zusatzfrage:\n"
+        "Bei der Berechnung des Trägheitsmomentes J = J_Steiner + J_Eigen\n"
+        "wird das Eighenträgheitsmoment der Kugel (2/5 * m * r^2) vernachlässigt,\n"
+        "da der Radius der Kugel (0.05m) im Vergleich zur Pendellänge (1m) klein ist."
+    )
 
 
 def aufgabe5():
@@ -232,8 +230,8 @@ def aufgabe5():
     print("Antwort auf Frage:")
     print("Durch die Linearisierung wird die Simulation ungenau und die dissapated Energy rutscht teilweise ins Negative, was physikalisch unmöglich ist.")
 
-# aufgabe1()
-# aufgabe2()
-# aufgabe3()
-# aufgabe4()
+aufgabe1()
+aufgabe2()
+aufgabe3()
+aufgabe4()
 aufgabe5()

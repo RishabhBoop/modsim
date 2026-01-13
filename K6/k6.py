@@ -65,15 +65,23 @@ def aufgabe4():
     package_path = current_path + "ModSimBib/package.mo"
     model_path = current_path + "A4.mo"
     mod = ModelicaSystem(model_path, "myPWM", [package_path])
-    
+
     # Set parameters
-    R = 1 # Ohm
+    R = 1  # Ohm
     L = 10e-3  # H
     U_DC = 300  # V
-    U_dach = 300*0.7  # V
+    U_dach = 300 * 0.7  # V
     I_start = 18.4  # A
     print("U_dach:", U_dach)
-    mod.setParameters([f"R = {R}", f"L = {L}", f"U_dc = {U_DC}", f"U_dach = {U_dach}", f"i_start = {I_start}"])
+    mod.setParameters(
+        [
+            f"R = {R}",
+            f"L = {L}",
+            f"U_dc = {U_DC}",
+            f"U_dach = {U_dach}",
+            f"i_start = {I_start}",
+        ]
+    )
     mod.setSimulationOptions("stopTime=0.04")
 
     # Simulate and get results
@@ -108,6 +116,6 @@ def aufgabe4():
     plt.show()
 
 
-# aufgabe1()
-# aufgabe2()
+aufgabe1()
+aufgabe2()
 aufgabe4()

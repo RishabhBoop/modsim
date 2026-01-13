@@ -190,8 +190,8 @@ def aufgabe5():
     plt.show()
 
 
-# aufgabe1()
-# aufgabe2()
-#aufgabe3()
-# aufgabe4()
+aufgabe1()
+aufgabe2()
+aufgabe3()
+aufgabe4()
 aufgabe5()

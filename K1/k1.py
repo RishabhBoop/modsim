@@ -129,7 +129,7 @@ def aufgabe4():
     print("---------- Ende Aufgabe 4 ----------")
     return
 
-# aufgabe1()
-# aufgabe2()
-# aufgabe3()
+aufgabe1()
+aufgabe2()
+aufgabe3()
 aufgabe4()
