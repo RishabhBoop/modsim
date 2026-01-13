@@ -209,3 +209,4 @@ __marimo__/
 # aux files specifc to labor
 *.npz
 lsg/
+*.png
