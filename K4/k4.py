@@ -126,3 +126,6 @@ for k in range(u_mittel_vec.size):
     #plot_RL_circuit(t_merged, u_merged, i_merged)
 
 plot_RL_circuit(t_total, u_total, i_total, t_u_total)
+
+
+# TODO: Aufgabe 6+7
