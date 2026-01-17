@@ -156,6 +156,24 @@ def aufgabe4():
     if EXPORT_PLOT:
         plt.savefig('k1_a4.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
         print("Plot saved to k1_a4.png")
+        plt.close()
+        
+        # Save each plot as a separate image
+        plt.figure()
+        plt.plot(xWerte, yWerte, color="black", label="Original Data")
+        plt.grid(True)
+        plt.title("Kapitel 1 - Aufgabe 4: Original Data")
+        plt.legend(loc="right")
+        plt.savefig('k1_a4_original.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        plt.close()
+
+        plt.figure()
+        plt.plot(x_new, y_new, color="blue", label="Interpolation")
+        plt.grid(True)
+        plt.title("Kapitel 1 - Aufgabe 4: Interpolation")
+        plt.legend(loc="right")
+        plt.savefig('k1_a4_interpolation.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
+        plt.close()
     else:
         plt.show()
         print("Plot closed.")
@@ -164,7 +182,7 @@ def aufgabe4():
 
 
 if __name__ == "__main__":
-    # aufgabe1()
-    # aufgabe2()
-    # aufgabe3()
+    aufgabe1()
+    aufgabe2()
+    aufgabe3()
     aufgabe4()
