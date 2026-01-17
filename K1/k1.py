@@ -142,14 +142,16 @@ def aufgabe4():
     # print(yWerte)
 
     # interpolate values
-    interpol = scipy.interpolate.interp1d(xWerte, yWerte)
+    interpol = scipy.interpolate.interp1d(xWerte, yWerte, kind="cubic")
     x_new = np.arange(min(xWerte), max(xWerte), 0.1)
     y_new = interpol(x_new)
 
     # plot matfile content
-    plt.plot(xWerte, yWerte, color="blue")
-    plt.plot(x_new, y_new, color="black", linestyle="--")
+    plt.plot(xWerte, yWerte, color="black", label="Original Data")
+    plt.plot(x_new, y_new, color="blue", label="Interpolation")
+    plt.grid(True)
     plt.title("Kapitel 1 - Aufgabe 4")
+    plt.legend(loc="right")
     print("Showing plot...")
     if EXPORT_PLOT:
         plt.savefig('k1_a4.png', format='png', bbox_inches="tight", dpi=600, transparent=True)
@@ -162,7 +164,7 @@ def aufgabe4():
 
 
 if __name__ == "__main__":
-    aufgabe1()
-    aufgabe2()
-    aufgabe3()
+    # aufgabe1()
+    # aufgabe2()
+    # aufgabe3()
     aufgabe4()
