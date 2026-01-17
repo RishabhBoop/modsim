@@ -1,5 +1,5 @@
 EXPORT_PLOT = True
-EXPORT_ALL = True
+EXPORT_ALL_AUFGABEN = True
 
 
 def export_chapter1():
@@ -14,7 +14,7 @@ def export_chapter2():
     import K2.k2 as k2
 
     k2.EXPORT_PLOT = EXPORT_PLOT
-    if EXPORT_ALL:
+    if EXPORT_ALL_AUFGABEN:
         k2.aufgabe1()
         k2.aufgabe2()
         k2.aufgabe3()
@@ -26,7 +26,7 @@ def export_chapter3():
     import K3.k3 as k3
 
     k3.EXPORT_PLOT = EXPORT_PLOT
-    if EXPORT_ALL:
+    if EXPORT_ALL_AUFGABEN:
         k3.aufgabe1()
         k3.aufgabe2()
         k3.aufgabe3()
@@ -38,7 +38,7 @@ def export_chapter4():
     import K4.k4 as k4
 
     k4.EXPORT_PLOT = EXPORT_PLOT
-    if EXPORT_ALL:
+    if EXPORT_ALL_AUFGABEN:
         k4.aufgabe1_2()
         k4.aufgabe3()
         k4.aufgabe4()
@@ -51,7 +51,7 @@ def export_chapter5():
     import K5.k5 as k5
 
     k5.EXPORT_PLOT = EXPORT_PLOT
-    if EXPORT_ALL:
+    if EXPORT_ALL_AUFGABEN:
         k5.aufgabe1()
         k5.aufgabe2()
         k5.aufgabe3()
@@ -63,7 +63,7 @@ def export_chapter6():
     import K6.k6 as k6
 
     k6.EXPORT_PLOT = EXPORT_PLOT
-    if EXPORT_ALL:
+    if EXPORT_ALL_AUFGABEN:
         k6.aufgabe1(export_filename="k6_a1.png")
         k6.aufgabe2()
     k6.aufgabe4()
@@ -72,14 +72,14 @@ def export_chapter6():
 
 print("Hallo, dieses Skript exportiert die plots der verschiedenen Kapitel.")
 
-export_all_input = input("Möchten Sie alle Kapitel exportieren? (y/n): ").strip().lower()
+export_all_input = input("Möchten Sie alle Aufgaben exportieren? (y/N): ").strip().lower()
 if export_all_input == "y":
-    EXPORT_ALL = True
-elif export_all_input == "n":
-    EXPORT_ALL = False
+    EXPORT_ALL_AUFGABEN = True
+elif export_all_input == "n" or export_all_input == "":
+    EXPORT_ALL_AUFGABEN = False
 else:
-    print("Ungültige Eingabe, verwende Standardwert (alle Aufgaben)")
-    EXPORT_ALL = True
+    print("Ungültige Eingabe, verwende Standardwert (nur Selbsterarbeitung)")
+    EXPORT_ALL_AUFGABEN = False
 
 chapters = input(
     "Welche Kapitel möchten Sie exportieren?\nGeben Sie die Kapitelnnummern durch Kommas getrennt ein, ENTER für alle (z.B. 1,3,5): "
