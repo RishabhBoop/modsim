@@ -136,6 +136,7 @@ def aufgabe4():
     # extract values
     xWerte = matfile.get("x_werte").squeeze()
     yWerte = matfile.get("y_werte").squeeze()
+    
     xWerte = np.array(xWerte)
     yWerte = np.array(yWerte)
     # print(xWerte)
@@ -143,7 +144,7 @@ def aufgabe4():
 
     # interpolate values
     interpol = scipy.interpolate.interp1d(xWerte, yWerte, kind="cubic")
-    x_new = np.arange(min(xWerte), max(xWerte), 0.1)
+    x_new = np.arange(min(xWerte), max(xWerte), 0.05)
     y_new = interpol(x_new)
 
     # plot matfile content
