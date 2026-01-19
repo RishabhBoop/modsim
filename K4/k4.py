@@ -196,7 +196,7 @@ def plot_dual_axis(t_i, i, t_u, u, title="Lösung", time_unit="s", filename=None
         plt.show()
 
 
-def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont, filename=None):
+def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont, filename=None, title=None):
     """
     Plot PWM and continuous sinusoidal results for comparison (Aufgabe 5).
 
@@ -231,7 +231,7 @@ def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont, fil
     ax1.set_ylabel("Spannung u / V", color="g")
     ax1.tick_params(axis="y", labelcolor="g")
     ax1.grid(True)
-    ax1.set_title("Kapitel 4 - Aufgabe 5: Vierquadrantensteller mit sinusförmiger Spannung")
+    ax1.set_title(title)
 
     # Plot Current on secondary y-axis
     ax2 = ax1.twinx()
@@ -501,7 +501,7 @@ def aufgabe5():
 
     # Plot the results
     plot_pwm_vs_continuous(
-        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result, filename="k4_a5.png"
+        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result, filename="k4_a5.png", title="Kapitel 4 - Aufgabe 5: Vierquadrantensteller mit sinusförmiger Spannung"
     )
 
 
@@ -584,7 +584,7 @@ def aufgabe6():
 
     # Plot the results
     plot_pwm_vs_continuous(
-        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result, filename="k4_a6.png"
+        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result, filename="k4_a6.png", title="Kapitel 4 - Aufgabe 6: Vierquadrantensteller mit sinusförmiger Spannung"
     )
 
 
