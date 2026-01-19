@@ -7,6 +7,7 @@ try:
 except NameError:
     EXPORT_PLOT = False
 
+
 def i_t(t, U=300, R=10, L=10e-3, i0=0, t_start=0):
     # Calculate I_inf (long term current)
     I_inf = U / R
@@ -89,7 +90,15 @@ def RL_circuit(duty, T_P, N, U_0, i_0, R, L, t_start=0):
 
 
 def plot_single_axis_10i(
-    t, i, t_u, u, title="Lösung", xlabel="t/s", ylabel="u/v bzw. 10*i/A", marker="o", filename=None
+    t,
+    i,
+    t_u,
+    u,
+    title="Lösung",
+    xlabel="t/s",
+    ylabel="u/v bzw. 10*i/A",
+    marker="o",
+    filename=None,
 ):
     """
     Plot voltage and 10*current on same axis (standard format for Aufgaben 1-4).
@@ -116,7 +125,9 @@ def plot_single_axis_10i(
 
     fig.tight_layout()
     if EXPORT_PLOT and filename:
-        plt.savefig(filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        plt.savefig(
+            filename, format="png", bbox_inches="tight", dpi=600, transparent=True
+        )
         print(f"Plot saved to {filename}")
     else:
         plt.show()
@@ -153,7 +164,9 @@ def plot_dual_subplots_10i(
 
     fig.tight_layout()
     if EXPORT_PLOT and filename:
-        plt.savefig(filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        plt.savefig(
+            filename, format="png", bbox_inches="tight", dpi=600, transparent=True
+        )
         print(f"Plot saved to {filename}")
     else:
         plt.show()
@@ -190,13 +203,17 @@ def plot_dual_axis(t_i, i, t_u, u, title="Lösung", time_unit="s", filename=None
     plt.title(title)
     fig.tight_layout()
     if EXPORT_PLOT and filename:
-        plt.savefig(filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        plt.savefig(
+            filename, format="png", bbox_inches="tight", dpi=600, transparent=True
+        )
         print(f"Plot saved to {filename}")
     else:
         plt.show()
 
 
-def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont, filename=None, title=None):
+def plot_pwm_vs_continuous(
+    t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont, filename=None, title=None
+):
     """
     Plot PWM and continuous sinusoidal results for comparison (Aufgabe 5).
 
@@ -253,7 +270,9 @@ def plot_pwm_vs_continuous(t_pwm, i_pwm, t_u_total, u_total, t_cont, i_cont, fil
 
     fig.tight_layout()
     if EXPORT_PLOT and filename:
-        plt.savefig(filename, format='png', bbox_inches="tight", dpi=600, transparent=True)
+        plt.savefig(
+            filename, format="png", bbox_inches="tight", dpi=600, transparent=True
+        )
         print(f"Plot saved to {filename}")
     else:
         plt.show()
@@ -282,7 +301,15 @@ def aufgabe1_2():
     u, t_u = u_t(u_0, duty, T_p)
 
     # Plot
-    plot_single_axis_10i(t, i, t_u, u, title="Kapitel 4 - Aufgabe 1-2", marker="s", filename="k4_a1_2.png")
+    plot_single_axis_10i(
+        t,
+        i,
+        t_u,
+        u,
+        title="Kapitel 4 - Aufgabe 1-2",
+        marker="s",
+        filename="k4_a1_2.png",
+    )
 
 
 def aufgabe3():
@@ -314,7 +341,16 @@ def aufgabe3():
 
     # Plot
     plot_dual_subplots_10i(
-        t1, i1, t_u1, u1, t2, i2, t_u2, u2, title="Kapitel 4 - Aufgabe 3", filename="k4_a3.png"
+        t1,
+        i1,
+        t_u1,
+        u1,
+        t2,
+        i2,
+        t_u2,
+        u2,
+        title="Kapitel 4 - Aufgabe 3",
+        filename="k4_a3.png",
     )
 
 
@@ -382,7 +418,13 @@ def aufgabe4():
 
     # Plot
     plot_single_axis_10i(
-        t_total, i_total, t_u_total, u_total, title="Kapitel 4 - Aufgabe 4", marker="+", filename="k4_a4.png"
+        t_total,
+        i_total,
+        t_u_total,
+        u_total,
+        title="Kapitel 4 - Aufgabe 4",
+        marker="+",
+        filename="k4_a4.png",
     )
 
 
@@ -501,7 +543,14 @@ def aufgabe5():
 
     # Plot the results
     plot_pwm_vs_continuous(
-        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result, filename="k4_a5.png", title="Kapitel 4 - Aufgabe 5: Vierquadrantensteller mit sinusförmiger Spannung"
+        t_total,
+        i_total,
+        t_u_total,
+        u_total,
+        t_continuous,
+        i_continuous_result,
+        filename="k4_a5.png",
+        title="Kapitel 4 - Aufgabe 5: Vierquadrantensteller mit sinusförmiger Spannung",
     )
 
 
@@ -584,13 +633,20 @@ def aufgabe6():
 
     # Plot the results
     plot_pwm_vs_continuous(
-        t_total, i_total, t_u_total, u_total, t_continuous, i_continuous_result, filename="k4_a6.png", title="Kapitel 4 - Aufgabe 6: Vierquadrantensteller mit sinusförmiger Spannung"
+        t_total,
+        i_total,
+        t_u_total,
+        u_total,
+        t_continuous,
+        i_continuous_result,
+        filename="k4_a6.png",
+        title="Kapitel 4 - Aufgabe 6: Vierquadrantensteller mit sinusförmiger Spannung",
     )
 
 
 if __name__ == "__main__":
-    # aufgabe1_2()
-    # aufgabe3()
-    # aufgabe4()
-    # aufgabe5()
+    aufgabe1_2()
+    aufgabe3()
+    aufgabe4()
+    aufgabe5()
     aufgabe6()
